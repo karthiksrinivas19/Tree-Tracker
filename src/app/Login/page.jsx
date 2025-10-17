@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LogIn, Mail, Lock } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
-import { auth } from '../../firebase';
+import { auth } from './../../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation'; // ✅ import router
 
