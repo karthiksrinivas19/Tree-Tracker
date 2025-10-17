@@ -2,14 +2,16 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LogIn, Mail, Lock, TreePine } from 'lucide-react';
+import { LogIn, Mail, Lock } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
-import { auth } from '../../firebase'; // make sure path is correct
+import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/navigation'; // ✅ import router
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter(); // ✅ initialize router
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +23,11 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success('Logged in successfully!');
+
+      // ✅ redirect after small delay so toast shows up
+      setTimeout(() => {
+        router.push('/'); // redirect to home page
+      }, 1000);
     } catch (err) {
       toast.error(err.message);
     }
@@ -47,7 +54,6 @@ export default function LoginPage() {
           transition={{ duration: 0.6 }}
           className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12"
         >
-          {/* ... rest of your JSX stays the same ... */}
           <div className="space-y-6">
             <div>
               <label className="flex items-center text-sm font-medium text-slate-700 mb-2 gap-2">
@@ -89,7 +95,6 @@ export default function LoginPage() {
               Sign In
             </motion.button>
           </div>
-          {/* ... rest of your JSX stays the same ... */}
         </motion.div>
       </div>
     </div>
