@@ -5,7 +5,7 @@ import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { Leaf, Trophy } from "lucide-react";
-
+//hi
 export default function Leaderboard() {
   const [leaders, setLeaders] = useState([]);
   const [loading, setLoading] = useState(true);
